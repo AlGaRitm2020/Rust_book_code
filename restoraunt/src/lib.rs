@@ -1,10 +1,7 @@
-use std::fmt;
-use std::io;
+mod reexport;
 
-fn fucntion1() -> fmt::Result<int> {
-    // pass
-}
+pub use reexport::front_of_house::hosting;
 
-fn function2() -> io::Result<int> {
-    // pass
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
 }
