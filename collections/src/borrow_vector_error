@@ -1,0 +1,11 @@
+fn main() {
+
+    let mut v = vec![1, 2, 3, 4, 5];
+
+    let first = &v[0]; // create ref
+
+    v.push(6); // change root object. Ref cant indicate value with 100% gurantee
+
+    println!("First elem is {}", first);
+
+}
