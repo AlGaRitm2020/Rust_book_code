@@ -1,65 +1,30 @@
 fn main() {
-
-    let data = "begin containing";
-
-    let s = data.to_string();
-
-    // this method also works in string literal
-    let s = "begin containing".to_string();
-
-    let s = String::from("begin containing");
-
-    // you can use different languages
-    let hello = "hello".to_string();
-    let hello = "Здравствуйте".to_string();
-    let hello = "Ola".to_string();
-
-    // adding str literal to end of String value
-    let mut s = "foo".to_string();
-    s.push_str("bar");
-
-    // you can use string literal after push_str, because this method don't getting own it
-    let mut s1 = "foo".to_string();
-    let s2 = "bar";
-    s1.push_str(s2);
-    println!("s2 is {}", s2);
-
-    // adding a single character to String
-    let mut s = String::from("lo");
-    s.push('l');
-
-    // concatenating with '+' syntax
-    let s1 = "Hello, ".to_string();
-    let s2 = "world!".to_string();
-    let s2 = s1 + &s2; // note: s1 was moved here and cant use anymore, but s2 can because we use ref to it. Rust using folowwing signature:
-    // fn add(self, s: &str) -> String {
+    use std::collections::HashMap;
     
+    // replace old value with specific key 
+    let mut scores = HashMap::new();
+    scores.insert("blue".to_string(), 10);
+    scores.insert("blue".to_string(), 50);
 
-    // more customisable String formating
-    let s1 = "tic".to_string();
-    let s2 = "tac".to_string();
-    let s3 = "toe".to_string();
+    println!("{:?}", scores);
 
-    let s = format!("{}-{}-{}", s1, s2, s3);
-    // note: format! macrocommand reads more easily and not get own variables
+    // using entry to add only if key is empty
+    scores.entry("yellow".to_string()).or_insert(50);
+    scores.entry("blue".to_string()).or_insert(30);
 
-
-    // this code raise an error, because in Rust String indexies is fobidden
-    let s1 = "hello".to_string();
-    let h = s1[0];
-    // why???
-    
-    let len = String::from("Hola").len();
-    // this len equal 4 bites    
-
-    let len String::from("Здравствуйте").len();
-    // but in this case len equal 24, not 12
-    
-
-    // so Rust dont need String indexing because it prevent us from problems in delelopment state
+    println!("{:?}", scores);
 
 
+    // updating based on previous value
+    let text = "hello world beautiful world";
 
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+    println!("{:?}", map);
 
 
 }
